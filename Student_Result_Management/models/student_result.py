@@ -7,9 +7,7 @@ class StudentResult(models.Model):
     student_id = fields.Many2one('res.partner', string="Student")
     guardian_id = fields.Many2one('res.partner', string="Guardian")
     student_class = fields.Char(string="Class")
-
     marks_ids = fields.One2many('student.marks', 'result_id', string="Marks")
-
     percentage = fields.Float(string="Percentage", compute="_compute_result", store=True)
     result = fields.Selection([
         ('pass', 'Pass'),

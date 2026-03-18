@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+
+        <template id="report_appointment_template">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <h2>Appointment Report</h2>
+
+                        <p>
+                            From: <t t-esc="o.date_from"/>
+                            To: <t t-esc="o.date_to"/>
+                        </p>
+
+                        <t t-if="o.doctor_id">
+                            <p>Doctor: <t t-esc="o.doctor_id.name"/></p>
+                        </t>
+
+                        <t t-set="appointments" t-value="o.get_appointments()"/>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Patient</th>
+                                    <th>Doctor</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr t-foreach="appointments" t-as="app">
+                                    <td><t t-esc="app.patient_id.name"/></td>
+                                    <td><t t-esc="app.doctor_id.name"/></td>
+                                    <td><t t-esc="app.date"/></td>
+                                    <td><t t-esc="app.state"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </t>
+
+            </t>
+        </template>
+
+    </data>
+</odoo>
