@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="student_list_template">
+        <t t-call="web.layout">
+            <div class="container mt-4">
+                <h1>Student Names</h1>
+                <ul>
+                    <t t-foreach="students" t-as="s">
+                        <li>
+                            <t t-esc="s.name"/>
+                        </li>
+                    </t>
+                </ul>
+
+            </div>
+        </t>
+    </template>
+</odoo>

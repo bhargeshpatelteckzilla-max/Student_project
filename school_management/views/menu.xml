@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root Menu -->
+    <menuitem id="school_root_menu"
+              name="School"
+              sequence="10"/>
+
+    <!-- Student Menu -->
+    <menuitem id="menu_student"
+              name="Students"
+              parent="school_root_menu"
+              action="action_student"
+              sequence="10"/>
+
+    <!-- Teacher Menu -->
+    <menuitem id="menu_teacher"
+              name="Teachers"
+              parent="school_root_menu"
+              action="action_teacher"
+              sequence="20"/>
+
+    <!-- Class Menu -->
+    <menuitem id="menu_class"
+              name="Classes"
+              parent="school_root_menu"
+              action="action_class"
+              sequence="30"/>
+
+</odoo>

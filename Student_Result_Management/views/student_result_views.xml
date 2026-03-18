@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- FORM VIEW -->
+    <record id="view_student_result_form" model="ir.ui.view">
+        <field name="name">student.result.form</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <header>
+                    <button name="%(student_result_report)d"
+                        type="action"
+                        string="Print Result"
+                        class="btn-primary"/>
+                </header>
+                <sheet>
+
+                    <!-- Student Info -->
+                    <group>
+                        <field name="student_id"/>
+                        <field name="guardian_id"/>
+                        <field name="student_class"/>
+                    </group>
+
+                    <!-- Marks Notebook -->
+                    <notebook>
+                        <page string="Marks">
+                            <field name="marks_ids">
+
+                                <!-- ✅ FIX: tree → list -->
+                                <list editable="bottom">
+                                    <field name="subject"/>
+
+                                    <!-- ✅ Show total -->
+                                    <field name="marks" sum="Total Marks"/>
+
+                                    <field name="pass_status"/>
+                                </list>
+
+                            </field>
+                        </page>
+                    </notebook>
+
+                    <!-- Result Section -->
+                    <group>
+                        <field name="percentage" readonly="1"/>
+                        <field name="result" readonly="1"/>
+                        <field name="grade" readonly="1"/>
+                    </group>
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- LIST VIEW -->
+    <record id="view_student_result_list" model="ir.ui.view">
+        <field name="name">student.result.list</field>
+        <field name="model">student.result</field>
+        <field name="arch" type="xml">
+
+            <!-- ✅ Add decoration -->
+            <list decoration-success="result == 'pass'"
+                  decoration-warning="result == 'atkt'"
+                  decoration-danger="result == 'fail'">
+
+                <field name="student_id"/>
+                <field name="student_class"/>
+                <field name="percentage"/>
+                <field name="result"/>
+                <field name="grade"/>
+            </list>
+
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_student_result" model="ir.actions.act_window">
+        <field name="name">Student Results</field>
+        <field name="res_model">student.result</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENU -->
+    <menuitem id="menu_student_root" name="Student"/>
+    <menuitem id="menu_student_result"
+              name="Results"
+              parent="menu_student_root"
+              action="action_student_result"/>
+
+</odoo>

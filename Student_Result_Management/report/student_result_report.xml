@@ -1,0 +1,12 @@
+<odoo>
+
+    <record id="student_result_report" model="ir.actions.report">
+        <field name="name">Student Result</field>
+        <field name="model">student.result</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">Student_Result_Management.report_template</field>
+        <field name="report_file">Student_Result_Management.report_template</field>
+        <field name="print_report_name">'Student Result - %s' % (object.student_id.name)</field>
+    </record>
+
+</odoo>

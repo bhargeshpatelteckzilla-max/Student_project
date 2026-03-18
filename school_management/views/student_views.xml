@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_student_list" model="ir.ui.view">
+        <field name="name">school.student.list</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="age"/>
+                <field name="gender"/>
+                <field name="class_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_parent_wizard"
+                            type="object"
+                            string="Add Parent"
+                            class="btn-primary"/>
+
+                    <button name="%(action_student_report)d"
+                            type="action"
+                            string="Print Report"
+                            class="btn-primary"/>
+                </header>
+
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="age"/>
+                        <field name="gender"/>
+                        <field name="class_id"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Parents">
+                            <field name="parent_ids" mode="list,form">
+                                <list editable="bottom">
+                                    <field name="name"/>
+                                    <field name="relation"/>
+                                    <field name="phone"/>
+                                </list>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="relation"/>
+                                        <field name="phone"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_student" model="ir.actions.act_window">
+        <field name="name">Students</field>
+        <field name="res_model">school.student</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

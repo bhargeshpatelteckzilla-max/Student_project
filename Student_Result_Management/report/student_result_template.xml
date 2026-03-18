@@ -1,0 +1,75 @@
+<odoo>
+
+    <template id="report_template">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+
+                <div class="page">
+
+                    <h2 style="text-align:center;">Student Result</h2>
+
+                    <!-- Student Info -->
+                    <p><strong>Student:</strong> <t t-esc="o.student_id.name"/></p>
+                    <p><strong>Class:</strong> <t t-esc="o.student_class"/></p>
+                    <p><strong>Guardian:</strong> <t t-esc="o.guardian_id.name"/></p>
+
+                    <!-- Marks Table -->
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Marks</th>
+                                <th>Pass</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr t-foreach="o.marks_ids" t-as="m">
+                                <td><t t-esc="m.subject"/></td>
+                                <td><t t-esc="m.marks"/></td>
+
+                                <!-- ✅ Better display -->
+                                <td>
+                                    <t t-if="m.pass_status">Pass</t>
+                                    <t t-else="">Fail</t>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                        <!-- ✅ Total Marks -->
+                        <tfoot>
+                            <tr>
+                                <td><strong>Total</strong></td>
+                                <td colspan="2">
+                                    <strong>
+                                        <t t-esc="sum(o.marks_ids.mapped('marks'))"/>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+
+                    <!-- Result Summary -->
+                    <p><strong>Percentage:</strong> <t t-esc="o.percentage"/>%</p>
+
+                    <!-- ✅ Capitalize -->
+                    <p><strong>Result:</strong>
+                        <t t-esc="o.result.upper()"/>
+                    </p>
+
+                    <!-- ✅ Highlight Grade -->
+                    <p>
+                        <strong>Grade:</strong>
+                        <span style="font-size:18px; font-weight:bold;">
+                            <t t-esc="o.grade"/>
+                        </span>
+                    </p>
+
+                </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

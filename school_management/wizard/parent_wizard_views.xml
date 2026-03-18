@@ -1,0 +1,25 @@
+<odoo>
+
+    <record id="view_parent_wizard_form" model="ir.ui.view">
+        <field name="name">parent.wizard.form</field>
+        <field name="model">parent.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Parent">
+                <group>
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="relation"/>
+                </group>
+                <footer>
+                    <button name="action_add_parent"
+                            type="object"
+                            string="Save"
+                            class="btn-primary"/>
+                    <button string="Cancel"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="student_report_template">
+        <t t-call="web.external_layout">
+            <main>
+                <div class="page">
+                    <h2>Student Report</h2>
+                    <t t-foreach="docs" t-as="doc">
+                        <p><strong>Name:</strong> <t t-esc="doc.name"/></p>
+                        <p><strong>Age:</strong> <t t-esc="doc.age"/></p>
+                        <h3>Parents</h3>
+                        <ul>
+                            <t t-foreach="doc.parent_ids" t-as="p">
+                                <li>
+                                    <t t-esc="p.name"/> -
+                                    <t t-esc="p.relation"/> -
+                                    <t t-esc="p.phone"/>
+                                </li>
+                            </t>
+                        </ul>
+
+                        <hr/>
+                    </t>
+                </div>
+
+            </main>
+
+        </t>
+    </template>
+
+    <record id="action_student_report" model="ir.actions.report">
+        <field name="name">Student Report</field>
+        <field name="model">school.student</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">school_management.student_report_template</field>
+        <field name="report_file">school_management.student_report_template</field>
+    </record>
+
+</odoo>
