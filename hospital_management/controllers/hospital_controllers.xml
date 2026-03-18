@@ -1,0 +1,26 @@
+<odoo>
+    <template id="appointment_page">
+        <t t-call="web.layout">
+            <div class="container">
+                <h2>Appointments</h2>
+
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Patient</th>
+                        <th>Doctor</th>
+                        <th>Date</th>
+                    </tr>
+
+                    <t t-foreach="appointments" t-as="app">
+                        <tr>
+                            <td><t t-esc="app.patient_id.name"/></td>
+                            <td><t t-esc="app.doctor_id.name"/></td>
+                            <td><t t-esc="app.date"/></td>
+                        </tr>
+                    </t>
+
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -11,6 +11,7 @@
         'views/patient_views.xml',
         'views/appointment_views.xml',
         'views/wizard_views.xml',
+        'controllers/hospital_controllers.xml',
 
         # ✅ FIXED ORDER
         'reports/appointment_report_template.xml',
