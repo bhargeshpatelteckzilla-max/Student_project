@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Structure Type -->
+        <record id="payroll_structure_type_simple" model="hr.payroll.structure.type">
+            <field name="name">Simple Structure Type</field>
+            <field name="country_id" ref="base.in"/>
+        </record>
+
+        <!-- Payroll Structure -->
+        <record id="payroll_structure_simple" model="hr.payroll.structure">
+            <field name="name">Simple Payroll Structure</field>
+            <field name="code">SIMPLE</field>
+            <field name="type_id" ref="hr_payroll_simple.payroll_structure_type_simple"/>
+        </record>
+
+        <!-- Salary Rule -->
+        <record id="attendance_salary_rule" model="hr.salary.rule">
+            <field name="name">Attendance Based Salary</field>
+            <field name="code">ATTENDANCE</field>
+            <field name="sequence">10</field>
+
+            <field name="struct_id" ref="hr_payroll_simple.payroll_structure_simple"/>
+            <field name="category_id" ref="hr_payroll.BASIC"/>
+
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">
+result = payslip.total_attendance_hours * contract.hourly_wage
+            </field>
+
+            <field name="condition_select">none</field>
+        </record>
+
+    </data>
+</odoo>

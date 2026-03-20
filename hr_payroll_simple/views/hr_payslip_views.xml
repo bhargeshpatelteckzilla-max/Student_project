@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_hr_payslip_form_inherit" model="ir.ui.view">
+            <field name="name">hr.payslip.form.inherit.attendance</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+
+                <!-- ❌ removed @string -->
+                <!-- ✅ use position-based xpath -->
+                <xpath expr="//notebook/page[1]" position="after">
+
+                    <page string="Attendance Details">
+                        <group>
+                            <field name="total_attendance_hours"/>
+                        </group>
+
+                        <!-- ✅ Odoo 19 uses list -->
+                        <field name="attendance_line_ids">
+                            <list>
+                                <field name="date"/>
+                                <field name="hours"/>
+                            </list>
+                        </field>
+
+                    </page>
+
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

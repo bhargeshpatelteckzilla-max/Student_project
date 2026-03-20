@@ -12,9 +12,7 @@
         'views/appointment_views.xml',
         'views/wizard_views.xml',
         'controllers/hospital_controllers.xml',
-
         # ✅ FIXED ORDER
-
         'reports/appointment_report_template.xml',
         'reports/appointment_report.xml',
         # 'reports/appointment_excel_report.xml'

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <report
+            id="action_report_payslip"
+            model="hr.payslip"
+            string="Payslip"
+            report_type="qweb-pdf"
+            name="hr_payroll_simple.report_payslip"
+            file="hr_payroll_simple.report_payslip"
+            groups="hr_payroll.group_hr_payroll_user"
+        />
+
+        <template id="report_payslip">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="hr_payroll_simple.report_payslip_document"/>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_payslip_document">
+            <div class="page" style="margin: 20px;">
+                <h2 style="text-align: center;">Payslip</h2>
+                <p><strong>Employee:</strong> <t t-esc="doc.employee_id.name"/></p>
+                <p><strong>Period:</strong> <t t-esc="doc.date_from"/> to <t t-esc="doc.date_to"/></p>
+                <p><strong>Total Attendance Hours:</strong> <t t-esc="doc.total_attendance_hours"/></p>
+
+                <h3>Salary Lines</h3>
+                <table class="table table-bordered" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #f2f2f2;">
+                            <th style="border: 1px solid #ddd; padding: 8px;">Description</th>
+                            <th style="border: 1px solid #ddd; padding: 8px;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="doc.line_ids" t-as="line">
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">
+                                    <t t-esc="line.name"/>
+                                </td>
+                                <td style="border: 1px solid #ddd; padding: 8px; text-align: right;">
+                                    <t t-esc="line.amount"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+
+                <p style="text-align: right; margin-top: 20px;">
+                    <strong>Net Pay:</strong> <t t-esc="doc.net_wage"/>
+                </p>
+            </div>
+        </template>
+
+    </data>
+</odoo>

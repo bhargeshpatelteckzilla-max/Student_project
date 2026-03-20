@@ -8,5 +8,4 @@
         <field name="report_file">Student_Result_Management.report_template</field>
         <field name="print_report_name">'Student Result - %s' % (object.student_id.name)</field>
     </record>
-
 </odoo>
